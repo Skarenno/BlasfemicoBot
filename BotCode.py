@@ -3,7 +3,7 @@ import time
 import telepot
 from pprint import pprint
 from telepot.loop import MessageLoop
-
+import importlib
 ##############################################################
 #### BOT INFO ####
 
@@ -31,6 +31,8 @@ from telepot.loop import MessageLoop
 
 ##############################################################
 #### DEFINITIONS ####
+module = importlib.import_module("FileHandling")
+
 
 Bestemmie = {
     "dio" : "dio",
@@ -50,6 +52,7 @@ def handle(msg):
         for key in Bestemmie:
             if key in msg['text']:
                 bot.sendMessage(chat_id, key)  #FOR NOW RETURNS THE KEY VALUE
+                module.RaiseCounter()
                 
 
 
@@ -62,6 +65,7 @@ def handle(msg):
 ##############################################################
 #### MAIN ####
   
+
 print("BOT RUNNING")
 bot = telepot.Bot("1525175182:AAEZVTBmwguwj2SKLGmsLd-21YLIjaKfwsg")
 MessageLoop(bot, handle).run_as_thread()
